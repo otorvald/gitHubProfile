@@ -14,6 +14,7 @@ class ApiManager {
     
     private init() {}
     
+    
     func login() {
         
     }

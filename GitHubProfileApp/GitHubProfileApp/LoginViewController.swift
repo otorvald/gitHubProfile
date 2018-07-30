@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
         self.loginButton.layer.cornerRadius = self.loginButton.bounds.height/2;
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         self.authenticatinLabel.isHidden = true;
         self.authenticatingActivityIndicator.isHidden = true;

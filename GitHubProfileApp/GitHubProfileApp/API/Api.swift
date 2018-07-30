@@ -10,9 +10,15 @@ import Foundation
 
 class Api {
     
-    struct Login {
-        let login = "Login"
-        let password = "Password"
+    public static let baseAPIURLString = "https://api.github.com/"
+    
+    struct login {
+        static let url = baseAPIURLString + "user/login/"
+        
+        struct params {
+            static let username = "username"
+            static let password = "password"
+        }
     }
     
 }
