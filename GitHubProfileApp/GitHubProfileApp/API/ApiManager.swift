@@ -14,7 +14,7 @@ class ApiManager {
     
     let clientId = "97aa498152405ea6b3c9"
     let clientSecret = "f451b032ef8ed1cd8b8b2ef52939d24dd2d939f5"
-    let personalToken = "ad2def71e4505a604838736a13a9d2d005527c91"
+    let personalToken = "f403c7c63a9678db16fcc5ce0fe84eeb201062c6"
     
     private init() {}
     
@@ -83,9 +83,9 @@ class ApiManager {
                         let user = User(initWithDictionary: dictionary)
                         completion(user)
                     }
-                    else {
-                        errorWithCode(response.response?.statusCode)
-                    }
+                }
+                else {
+                    errorWithCode(response.response?.statusCode)
                 }
         }
     }

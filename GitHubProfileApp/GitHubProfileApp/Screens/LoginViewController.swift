@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class LoginViewController: UIViewController {
     
@@ -41,7 +42,10 @@ class LoginViewController: UIViewController {
         ApiManager.sharedManager.getUser(completion: {user in
             self.user = user;
         }, errorWithCode: {errorCode in
-            print("Auth error with code: \(String(describing: errorCode))")
+            if let err = errorCode {
+                print("Auth error with code: \(String(describing: err))")
+                self.view.makeToast("Auth error with code: \(String(describing: err))", duration: 3, position: .bottom)
+            }
             self.authenticatinLabel.isHidden = true;
             self.authenticatingActivityIndicator.isHidden = true;
         })
