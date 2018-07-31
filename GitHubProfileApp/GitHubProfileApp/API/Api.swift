@@ -21,4 +21,20 @@ class Api {
         }
     }
     
+    struct user {
+        static let url = baseAPIURLString + "user"
+        
+        struct params {
+            static let name = "name"
+            static let blog = "blog"
+            static let company = "company"
+            static let location = "location"
+            static let bio = "bio"
+        }
+        
+        struct headers {
+            static let authorization = "Authorization"
+        }
+    }
+    
 }

@@ -31,11 +31,13 @@ class ProfileViewController: UIViewController {
     
     let cellIdentifier = "cellIdentifier"
     
+    var user : User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.makeInitialCustomization()
+        self.setUserProperties()
     }
     
     
@@ -57,6 +59,34 @@ class ProfileViewController: UIViewController {
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.height/2
         
         self.tableViewHeightConstraint.constant = self.tableViewRowHeight * CGFloat(self.menuItems.count)
+    }
+    
+    
+    func setUserProperties() {
+        if let userImageData = self.user?.imageData {
+            self.profileImageView.image = UIImage(data: userImageData)
+        }
+        if let userName = self.user?.name {
+            self.profileNameLabel.text = userName
+        }
+        if let login = self.user?.login {
+            self.profileNickNameLabel.text = login
+        }
+        if let email = self.user?.email {
+            self.profileEmailLabel.text = email
+        }
+        if let blog = self.user?.blog {
+            self.profileSiteLabel.text = blog
+        }
+        if let company = self.user?.company {
+            self.profileCompanyLabel.text = company
+        }
+        if let location = self.user?.location {
+            self.profileLocationLabel.text = location
+        }
+        if let bio = self.user?.bio {
+            self.profileBioLabel.text = bio
+        }
     }
     
     

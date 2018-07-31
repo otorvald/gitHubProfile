@@ -16,6 +16,7 @@
 		006C1BB4210F3654009816E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C1BB3210F3654009816E3 /* LoginViewController.swift */; };
 		006C1BB6210F366D009816E3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C1BB5210F366D009816E3 /* ProfileViewController.swift */; };
 		006C1BB8210F367C009816E3 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C1BB7210F367C009816E3 /* EditProfileViewController.swift */; };
+		00F9979C21107FDC0042E95F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9979B21107FDC0042E95F /* User.swift */; };
 		502F732B210FBEDB00FACE05 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F732A210FBEDB00FACE05 /* TextFieldTableViewCell.swift */; };
 		502F732D210FBEEC00FACE05 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F732C210FBEEC00FACE05 /* TextViewTableViewCell.swift */; };
 		E72B48B485C9C6CDF9CABB43 /* Pods_GitHubProfileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 979551969DA74469AD1C3469 /* Pods_GitHubProfileApp.framework */; };
@@ -33,6 +34,7 @@
 		006C1BB3210F3654009816E3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		006C1BB5210F366D009816E3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		006C1BB7210F367C009816E3 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		00F9979B21107FDC0042E95F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		502F732A210FBEDB00FACE05 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		502F732C210FBEEC00FACE05 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		7386D22BD907ABD731CC3BCA /* Pods-GitHubProfileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubProfileApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubProfileApp/Pods-GitHubProfileApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,12 +76,11 @@
 			isa = PBXGroup;
 			children = (
 				006C1BAD210F33D3009816E3 /* API */,
-				006C1BB7210F367C009816E3 /* EditProfileViewController.swift */,
-				006C1BB5210F366D009816E3 /* ProfileViewController.swift */,
-				006C1BB3210F3654009816E3 /* LoginViewController.swift */,
+				00F9979A21107FC20042E95F /* Screens */,
 				00332AA4210F1FFF008077C9 /* AppDelegate.swift */,
 				502F732A210FBEDB00FACE05 /* TextFieldTableViewCell.swift */,
 				502F732C210FBEEC00FACE05 /* TextViewTableViewCell.swift */,
+				00F9979B21107FDC0042E95F /* User.swift */,
 				00332AA8210F1FFF008077C9 /* Main.storyboard */,
 				006C1BB2210F3613009816E3 /* SupportingFiles */,
 			);
@@ -89,8 +90,8 @@
 		006C1BAD210F33D3009816E3 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				006C1BAE210F33FA009816E3 /* ApiManager.swift */,
 				006C1BB0210F3438009816E3 /* Api.swift */,
+				006C1BAE210F33FA009816E3 /* ApiManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -103,6 +104,16 @@
 				00332AB0210F2001008077C9 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		00F9979A21107FC20042E95F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				006C1BB7210F367C009816E3 /* EditProfileViewController.swift */,
+				006C1BB5210F366D009816E3 /* ProfileViewController.swift */,
+				006C1BB3210F3654009816E3 /* LoginViewController.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		2AE50B3AA7C464B622BCFAAE /* Frameworks */ = {
@@ -239,6 +250,7 @@
 				006C1BAF210F33FA009816E3 /* ApiManager.swift in Sources */,
 				502F732B210FBEDB00FACE05 /* TextFieldTableViewCell.swift in Sources */,
 				006C1BB8210F367C009816E3 /* EditProfileViewController.swift in Sources */,
+				00F9979C21107FDC0042E95F /* User.swift in Sources */,
 				006C1BB6210F366D009816E3 /* ProfileViewController.swift in Sources */,
 				006C1BB1210F3438009816E3 /* Api.swift in Sources */,
 				00332AA5210F1FFF008077C9 /* AppDelegate.swift in Sources */,

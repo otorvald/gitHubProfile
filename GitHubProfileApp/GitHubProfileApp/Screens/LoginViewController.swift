@@ -14,6 +14,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var authenticatinLabel: UILabel!
     @IBOutlet weak var authenticatingActivityIndicator: UIActivityIndicatorView!
     
+    var user : User? {
+        didSet {
+            performSegue(withIdentifier: "showProfile", sender: self);
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +38,18 @@ class LoginViewController: UIViewController {
         self.authenticatinLabel.isHidden = false;
         self.authenticatingActivityIndicator.isHidden = false;
         
-        performSegue(withIdentifier: "showProfile", sender: self);
+        ApiManager.sharedManager.getUser(completion: {user in
+            self.user = user;
+        })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showProfile" {
+            let navigationController = segue.destination as! UINavigationController
+            let profileViewController = navigationController.viewControllers.last as! ProfileViewController
+            
+            profileViewController.user = self.user
+        }
+    }
 
 }

@@ -18,7 +18,6 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var profileImageViewBorder: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    
     let textFieldCellIdentifier = "textFieldCell"
     let textViewCellIdentifier = "textViewCell"
     
@@ -31,6 +30,7 @@ class EditProfileViewController: UIViewController {
     let bioMaxLength = 100;
     let textFieldMaxLength = 25;
     
+    var user : User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,14 +51,18 @@ class EditProfileViewController: UIViewController {
     
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
-        
+        ApiManager.sharedManager.patchUser(name: "Kazimir Ivanov") { (success) in
+            print(success)
+        }
     }
+    
     
     func moveViewUp() {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.frame = CGRect(x:self.view.frame.origin.x, y:self.view.frame.origin.y - 200, width:self.view.frame.size.width, height:self.view.frame.size.height);
         })
     }
+    
     
     func moveViewDown() {
         UIView.animate(withDuration: 0.25, animations: {
@@ -75,9 +79,11 @@ extension EditProfileViewController: UITextViewDelegate {
         self.moveViewUp()
     }
     
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         self.moveViewDown()
     }
+    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
@@ -100,6 +106,7 @@ extension EditProfileViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.moveViewDown()
     }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
