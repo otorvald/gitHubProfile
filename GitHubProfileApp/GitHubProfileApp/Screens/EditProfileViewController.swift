@@ -51,9 +51,26 @@ class EditProfileViewController: UIViewController {
     
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
-        ApiManager.sharedManager.patchUser(name: "Kazimir Ivanov") { (success) in
-            print(success)
-        }
+        
+        var newName : String?
+        var newBlog : String?
+        var newCompany : String?
+        var newLocation : String?
+        var newBio : String?
+        
+        newName = "Alex Skutarenko"
+        
+        ApiManager.sharedManager.patchUser(name: newName, blog: newBlog, company: newCompany, location: newLocation, bio: newBio, completion: { user in
+            
+            let profileViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
+            profileViewController.user = user
+            profileViewController.updateUserProperties()
+            
+        }, errorWithCode: { errorCode in
+            if let err = errorCode {
+                print("Patching error with code \(String(describing: err))")
+            }
+        })
     }
     
     

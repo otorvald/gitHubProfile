@@ -40,6 +40,10 @@ class LoginViewController: UIViewController {
         
         ApiManager.sharedManager.getUser(completion: {user in
             self.user = user;
+        }, errorWithCode: {errorCode in
+            print("Auth error with code: \(String(describing: errorCode))")
+            self.authenticatinLabel.isHidden = true;
+            self.authenticatingActivityIndicator.isHidden = true;
         })
     }
     

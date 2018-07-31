@@ -14,32 +14,43 @@ class ApiManager {
     
     let clientId = "97aa498152405ea6b3c9"
     let clientSecret = "f451b032ef8ed1cd8b8b2ef52939d24dd2d939f5"
-    let personalToken = "dabd46b118c9fb0838b0fd6d90173faa04f19578"
+    let personalToken = "ad2def71e4505a604838736a13a9d2d005527c91"
     
     private init() {}
     
-    func getUser(completion: @escaping (User?) -> ()) {
+    
+    func getUser(completion: @escaping (User?) -> (), errorWithCode: @escaping (Int?) -> ()) {
         
         let headers = [Api.user.headers.authorization : "Bearer \(self.personalToken)"]
         
         Alamofire.request(Api.user.url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
             .responseJSON { response in
                 
-                if let error = response.error {
-                    print(error)
-                } else {
-                    var user : User?
-                    
+                if (response.response?.statusCode == 200) {
                     if let dictionary = response.result.value as? [String:Any] {
-                        user = User(initWithDictionary: dictionary)
+                        let user = User(initWithDictionary: dictionary)
+                        completion(user)
                     }
+                } else {
                     
-                    completion(user)
+                    if let error = response.error {
+                        print(error)
+                    } else {
+                        
+                        errorWithCode(response.response?.statusCode)
+                    }
                 }
         }
     }
     
-    func patchUser(name: String? = nil, blog: String? = nil, completion: @escaping (Bool) -> ()) {
+    
+    func patchUser(name: String? = nil,
+                   blog: String? = nil,
+                   company: String? = nil,
+                   location: String? = nil,
+                   bio: String?,
+                   completion: @escaping (User?) -> (),
+                   errorWithCode: @escaping (Int?) -> ()) {
         
         let headers = [Api.user.headers.authorization : "Bearer \(self.personalToken)"]
         var params = [String:String]()
@@ -52,18 +63,35 @@ class ApiManager {
             params[Api.user.params.blog] = blog;
         }
         
-        Alamofire.request(Api.user.url, method: .patch, parameters: params, encoding: URLEncoding.default, headers: headers)
-            .response { response in
-                if let error = response.error {
-                    print(error)
-                    completion(false)
-                } else {
-                    completion(true)
+        if company != nil {
+            params[Api.user.params.company] = company;
+        }
+        
+        if location != nil {
+            params[Api.user.params.location] = location;
+        }
+        
+        if bio != nil {
+            params[Api.user.params.bio] = bio;
+        }
+        
+        Alamofire.request(Api.user.url, method: .patch, parameters: params, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON { response in
+                
+                if response.response?.statusCode == 200 {
+                    if let dictionary = response.result.value as? [String:Any] {
+                        let user = User(initWithDictionary: dictionary)
+                        completion(user)
+                    }
+                    else {
+                        errorWithCode(response.response?.statusCode)
+                    }
                 }
         }
     }
     
 }
+
 
 extension String {
     
@@ -78,7 +106,6 @@ extension String {
         
         return nil
     }
-    
 }
 
 

@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         self.makeInitialCustomization()
-        self.setUserProperties()
+        self.updateUserProperties()
     }
     
     
@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController {
     }
     
     
-    func setUserProperties() {
+    func updateUserProperties() {
         if let userImageData = self.user?.imageData {
             self.profileImageView.image = UIImage(data: userImageData)
         }
@@ -101,6 +101,13 @@ class ProfileViewController: UIViewController {
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "showEditProfile", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEditProfile" {
+            let editProfileViewController = segue.destination as! EditProfileViewController
+            editProfileViewController.user = self.user
+        }
     }
     
 }
