@@ -12,6 +12,9 @@ class Api {
     
     public static let baseAPIURLString = "https://api.github.com/"
     public static let baseURLString = "https://github.com/"
+    public static let clientId = "97aa498152405ea6b3c9"
+    public static let clientSecret = "f451b032ef8ed1cd8b8b2ef52939d24dd2d939f5"
+    public static let redirectUrl = "http://profileapp.com"
     
     struct login {
         static let url = baseURLString + "login/oauth/access_token"

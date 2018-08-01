@@ -24,7 +24,9 @@ class EditProfileViewController: UIViewController {
     let menuItems = ["Name", "Blog", "Company", "Location", "Bio"]
     let textFieldPlaceholders = ["Name or nickname", "Example.com", "Company name", "City"]
     
-    var textFiels = [UITextField]()
+    var textFieldsText = [String?]()
+    
+    var textFields = [UITextField]()
     var textView : UITextView?
     
     let heightForTextFieldCell : CGFloat = 40
@@ -34,6 +36,7 @@ class EditProfileViewController: UIViewController {
     let textFieldMaxLength = 25
     
     var user : User?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +51,11 @@ class EditProfileViewController: UIViewController {
         if let data = user?.imageData {
             self.profileImageView.image = UIImage(data: data)
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.view.makeToast("Fill the fields you need to update", duration: 4, position: .bottom)
+        
+        self.textFieldsText.append(user?.name)
+        self.textFieldsText.append(user?.blog)
+        self.textFieldsText.append(user?.company)
+        self.textFieldsText.append(user?.location)
     }
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
@@ -60,32 +64,16 @@ class EditProfileViewController: UIViewController {
     
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
-        //TODO: Try to optimize
-        var newName : String?
-        var newBlog : String?
-        var newCompany : String?
-        var newLocation : String?
-        var newBio : String?
         
-        if !(self.textFiels[0].text?.isEmpty)! {
-            newName = self.textFiels[0].text
-        }
-        if !(self.textFiels[1].text?.isEmpty)! {
-            newBlog = self.textFiels[1].text
-        }
-        if !(self.textFiels[2].text?.isEmpty)! {
-            newCompany = self.textFiels[2].text
-        }
-        if !(self.textFiels[3].text?.isEmpty)! {
-            newLocation = self.textFiels[3].text
-        }
-        if self.textView?.text != self.user?.bio {
-            newBio = self.textView?.text
-        }
+        self.user?.name = self.textFields[0].text
+        self.user?.blog = self.textFields[1].text
+        self.user?.company = self.textFields[2].text
+        self.user?.location = self.textFields[3].text
+        self.user?.bio = self.textView?.text
         
         if let token = UserDefaultsManager.getUserToken() {
             
-            ApiManager.sharedManager.patchUser(name: newName, blog: newBlog, company: newCompany, location: newLocation, bio: newBio, token: token, completion: { user in
+            ApiManager.sharedManager.patchUser(user: self.user!, token: token, completion: { user in
                 
                 let profileViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
                 profileViewController.user = user
@@ -180,8 +168,9 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: self.textFieldCellIdentifier, for: indexPath) as! TextFieldTableViewCell
         cell.label.text = self.menuItems[indexPath.row]
         cell.textField.placeholder = self.textFieldPlaceholders[indexPath.row]
+        cell.textField.text = self.textFieldsText[indexPath.row]
         cell.textField.delegate = self
-        self.textFiels.append(cell.textField)
+        self.textFields.append(cell.textField)
         return cell
     }
     

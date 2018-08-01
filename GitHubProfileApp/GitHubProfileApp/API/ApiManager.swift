@@ -12,16 +12,13 @@ class ApiManager {
     
     static let sharedManager = ApiManager()
     
-    let clientId = "97aa498152405ea6b3c9"
-    let clientSecret = "f451b032ef8ed1cd8b8b2ef52939d24dd2d939f5"
-    
     private init() {}
     
     
     func login(code: String, completion: @escaping (String?) -> (), errorWithCode: @escaping (Int?) -> ()) {
         
-        let params = [Api.login.params.clientId: self.clientId,
-                      Api.login.params.clientSectet: self.clientSecret,
+        let params = [Api.login.params.clientId: Api.clientId,
+                      Api.login.params.clientSectet: Api.clientSecret,
                       Api.login.params.code: code]
         
         Alamofire.request(Api.login.url, method: .post, parameters: params, encoding: JSONEncoding.default)
@@ -30,7 +27,7 @@ class ApiManager {
                 if response.response?.statusCode == 200 {
                     
                     if let responseString = response.result.value {
-                        let components = responseString.components(separatedBy: "&scope")
+                        let components = responseString.components(separatedBy: "&scope") //Get token from response
                         let token = components.first?.deletingPrefix("access_token=")
                         
                         completion(token)
@@ -42,6 +39,7 @@ class ApiManager {
         }
         
     }
+    
     
     func getUser(token: String, completion: @escaping (User?) -> (), errorWithCode: @escaping (Int?) -> ()) {
         
@@ -68,35 +66,28 @@ class ApiManager {
     }
     
     
-    func patchUser(name: String? = nil,
-                   blog: String? = nil,
-                   company: String? = nil,
-                   location: String? = nil,
-                   bio: String?,
-                   token: String,
-                   completion: @escaping (User?) -> (),
-                   errorWithCode: @escaping (Int?) -> ()) {
+    func patchUser(user: User, token: String, completion: @escaping (User?) -> (), errorWithCode: @escaping (Int?) -> ()) {
         
         let headers = [Api.user.headers.authorization : "Bearer \(token)"]
         var params = [String:String]()
         
-        if name != nil {
+        if let name = user.name {
             params[Api.user.params.name] = name;
         }
         
-        if blog != nil {
+        if let blog = user.blog {
             params[Api.user.params.blog] = blog;
         }
         
-        if company != nil {
+        if let company = user.company {
             params[Api.user.params.company] = company;
         }
         
-        if location != nil {
+        if let location = user.location {
             params[Api.user.params.location] = location;
         }
         
-        if bio != nil {
+        if let bio = user.bio {
             params[Api.user.params.bio] = bio;
         }
         
@@ -114,7 +105,6 @@ class ApiManager {
                 }
         }
     }
-    
 }
 
 
@@ -142,19 +132,3 @@ extension String {
         return String(self.dropLast(sufix.count))
     }
 }
-
-
-//    func login(username: String, password: String) {
-//
-//        let optData = "\(username):\(password)".data(using: String.Encoding.utf8)
-//        if let data = optData {
-//            basicAuth = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-//        }
-//
-//        //let params = ["scopes":["user"], "note": "profile_app", "client_id": clientId, "client_secret": clientSecret] as [String : Any]
-//
-//        Alamofire.request("https://api.github.com/user", method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["Authorization": "Bearer \(basicAuth)"]) .responseJSON(completionHandler: { json in
-//            print(json)
-//        })
-//
-//    }

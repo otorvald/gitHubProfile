@@ -11,13 +11,11 @@ import UIKit
 class AuthViewController: UIViewController {
     
     var webView : UIWebView?
-    let client_id = "97aa498152405ea6b3c9"
-    let redirect_url = "http://profileapp.com"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Auth"
+        self.title = "Authentication"
         
         let leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
         leftBarButtonItem.tintColor = .white
@@ -34,22 +32,22 @@ class AuthViewController: UIViewController {
         self.view.addSubview(webView)
         webView.delegate = self
         
-        let url = URL(string: "https://github.com/login/oauth/authorize?client_id=\(self.client_id)&redirect_url=\(self.redirect_url)&scope=user")
+        let url = URL(string: "https://github.com/login/oauth/authorize?client_id=\(Api.clientId)&redirect_url=\(Api.redirectUrl)&scope=user")
         let request = URLRequest(url: url!)
         webView.loadRequest(request)
     }
     
     @objc func cancelAction() {
-        self.webView?.delegate = nil;
         self.dismiss(animated: true, completion: nil);
     }
+    
 
 }
 
 extension AuthViewController: UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        if (request.url?.absoluteString.contains("code="))! {
+        if (request.url?.absoluteString.contains("code="))! { //Get code from urlString
             let components = request.url?.absoluteString.components(separatedBy: "code=")
             let loginViewController = self.presentingViewController as! LoginViewController
             dismiss(animated: true) {
