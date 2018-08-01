@@ -28,6 +28,7 @@ class User {
     var location : String?
     var bio : String?
     
+    
     init(imageDataString: String?, name : String?, login: String?, email: String?, blog : String?, company : String?, location : String?, bio : String? ) {
         self.imageData = imageDataString?.getPhotoData()
         self.name = name
@@ -38,6 +39,7 @@ class User {
         self.location = location
         self.bio = bio
     }
+    
     
     convenience init(initWithDictionary dictionary: [String:Any]) {
         

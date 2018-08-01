@@ -91,20 +91,19 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        if self.presentingViewController != nil {
-            self.dismiss(animated: true, completion: nil);
-        } else {
-            print("NEMA")
-        }
+        
+        UserDefaultsManager.removeUserToken()
+        performSegue(withIdentifier: "profile-login", sender: self)
+        
     }
     
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "showEditProfile", sender: self)
+        performSegue(withIdentifier: "profile-editProfile", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEditProfile" {
+        if segue.identifier == "profile-editProfile" {
             let editProfileViewController = segue.destination as! EditProfileViewController
             editProfileViewController.user = self.user
         }

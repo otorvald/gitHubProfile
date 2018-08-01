@@ -11,13 +11,15 @@ import Foundation
 class Api {
     
     public static let baseAPIURLString = "https://api.github.com/"
+    public static let baseURLString = "https://github.com/"
     
     struct login {
-        static let url = baseAPIURLString + "user/login/"
+        static let url = baseURLString + "login/oauth/access_token"
         
         struct params {
-            static let username = "username"
-            static let password = "password"
+            static let clientId = "client_id"
+            static let clientSectet = "client_secret"
+            static let code = "code"
         }
     }
     

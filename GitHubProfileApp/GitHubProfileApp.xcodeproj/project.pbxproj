@@ -16,9 +16,12 @@
 		006C1BB4210F3654009816E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C1BB3210F3654009816E3 /* LoginViewController.swift */; };
 		006C1BB6210F366D009816E3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C1BB5210F366D009816E3 /* ProfileViewController.swift */; };
 		006C1BB8210F367C009816E3 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C1BB7210F367C009816E3 /* EditProfileViewController.swift */; };
+		007717202111C00B00016FAA /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077171F2111C00B00016FAA /* AuthViewController.swift */; };
+		00CDF6B32111D58400AE72CC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDF6B22111D58400AE72CC /* UserDefaultsManager.swift */; };
+		00CDF6B72111D80800AE72CC /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDF6B52111D80800AE72CC /* TextFieldTableViewCell.swift */; };
+		00CDF6B82111D80800AE72CC /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDF6B62111D80800AE72CC /* TextViewTableViewCell.swift */; };
+		00CDF6BA2111DDEE00AE72CC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDF6B92111DDEE00AE72CC /* SplashViewController.swift */; };
 		00F9979C21107FDC0042E95F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9979B21107FDC0042E95F /* User.swift */; };
-		502F732B210FBEDB00FACE05 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F732A210FBEDB00FACE05 /* TextFieldTableViewCell.swift */; };
-		502F732D210FBEEC00FACE05 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F732C210FBEEC00FACE05 /* TextViewTableViewCell.swift */; };
 		E72B48B485C9C6CDF9CABB43 /* Pods_GitHubProfileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 979551969DA74469AD1C3469 /* Pods_GitHubProfileApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +37,12 @@
 		006C1BB3210F3654009816E3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		006C1BB5210F366D009816E3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		006C1BB7210F367C009816E3 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		0077171F2111C00B00016FAA /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		00CDF6B22111D58400AE72CC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		00CDF6B52111D80800AE72CC /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		00CDF6B62111D80800AE72CC /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
+		00CDF6B92111DDEE00AE72CC /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		00F9979B21107FDC0042E95F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		502F732A210FBEDB00FACE05 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
-		502F732C210FBEEC00FACE05 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		7386D22BD907ABD731CC3BCA /* Pods-GitHubProfileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubProfileApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubProfileApp/Pods-GitHubProfileApp.release.xcconfig"; sourceTree = "<group>"; };
 		979551969DA74469AD1C3469 /* Pods_GitHubProfileApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubProfileApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE8323F589311C508598D28 /* Pods-GitHubProfileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubProfileApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubProfileApp/Pods-GitHubProfileApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,10 +83,9 @@
 			children = (
 				006C1BAD210F33D3009816E3 /* API */,
 				00F9979A21107FC20042E95F /* Screens */,
-				00332AA4210F1FFF008077C9 /* AppDelegate.swift */,
-				502F732A210FBEDB00FACE05 /* TextFieldTableViewCell.swift */,
-				502F732C210FBEEC00FACE05 /* TextViewTableViewCell.swift */,
 				00F9979B21107FDC0042E95F /* User.swift */,
+				00CDF6B22111D58400AE72CC /* UserDefaultsManager.swift */,
+				00332AA4210F1FFF008077C9 /* AppDelegate.swift */,
 				00332AA8210F1FFF008077C9 /* Main.storyboard */,
 				006C1BB2210F3613009816E3 /* SupportingFiles */,
 			);
@@ -106,12 +111,24 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		00CDF6B42111D5BA00AE72CC /* EditProfileCells */ = {
+			isa = PBXGroup;
+			children = (
+				00CDF6B52111D80800AE72CC /* TextFieldTableViewCell.swift */,
+				00CDF6B62111D80800AE72CC /* TextViewTableViewCell.swift */,
+			);
+			path = EditProfileCells;
+			sourceTree = "<group>";
+		};
 		00F9979A21107FC20042E95F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				006C1BB7210F367C009816E3 /* EditProfileViewController.swift */,
+				00CDF6B42111D5BA00AE72CC /* EditProfileCells */,
 				006C1BB5210F366D009816E3 /* ProfileViewController.swift */,
 				006C1BB3210F3654009816E3 /* LoginViewController.swift */,
+				00CDF6B92111DDEE00AE72CC /* SplashViewController.swift */,
+				0077171F2111C00B00016FAA /* AuthViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -248,14 +265,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				006C1BB4210F3654009816E3 /* LoginViewController.swift in Sources */,
-				502F732D210FBEEC00FACE05 /* TextViewTableViewCell.swift in Sources */,
+				007717202111C00B00016FAA /* AuthViewController.swift in Sources */,
 				006C1BAF210F33FA009816E3 /* ApiManager.swift in Sources */,
-				502F732B210FBEDB00FACE05 /* TextFieldTableViewCell.swift in Sources */,
+				00CDF6BA2111DDEE00AE72CC /* SplashViewController.swift in Sources */,
+				00CDF6B32111D58400AE72CC /* UserDefaultsManager.swift in Sources */,
 				006C1BB8210F367C009816E3 /* EditProfileViewController.swift in Sources */,
 				00F9979C21107FDC0042E95F /* User.swift in Sources */,
 				006C1BB6210F366D009816E3 /* ProfileViewController.swift in Sources */,
 				006C1BB1210F3438009816E3 /* Api.swift in Sources */,
 				00332AA5210F1FFF008077C9 /* AppDelegate.swift in Sources */,
+				00CDF6B82111D80800AE72CC /* TextViewTableViewCell.swift in Sources */,
+				00CDF6B72111D80800AE72CC /* TextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

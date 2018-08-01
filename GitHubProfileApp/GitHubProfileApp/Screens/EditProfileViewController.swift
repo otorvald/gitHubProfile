@@ -44,6 +44,10 @@ class EditProfileViewController: UIViewController {
         self.profileImageView.layoutIfNeeded()
         self.profileImageViewBorder.layer.cornerRadius = self.profileImageViewBorder.frame.height/2;
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.height/2;
+        
+        if let data = user?.imageData {
+            self.profileImageView.image = UIImage(data: data)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,19 +83,22 @@ class EditProfileViewController: UIViewController {
             newBio = self.textView?.text
         }
         
-        
-        ApiManager.sharedManager.patchUser(name: newName, blog: newBlog, company: newCompany, location: newLocation, bio: newBio, completion: { user in
+        if let token = UserDefaultsManager.getUserToken() {
             
-            let profileViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
-            profileViewController.user = user
-            profileViewController.updateUserProperties()
-            self.view.makeToast("Profile successfully updated")
-        }, errorWithCode: { errorCode in
-            if let err = errorCode {
-                print("Patching error with code \(String(describing: err))")
-                self.view.makeToast("Request error with code: \(String(describing: err))", duration: 3, position: .bottom)
-            }
-        })
+            ApiManager.sharedManager.patchUser(name: newName, blog: newBlog, company: newCompany, location: newLocation, bio: newBio, token: token, completion: { user in
+                
+                let profileViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
+                profileViewController.user = user
+                profileViewController.updateUserProperties()
+                self.view.makeToast("Profile successfully updated")
+            }, errorWithCode: { errorCode in
+                if let err = errorCode {
+                    print("Patching error with code \(String(describing: err))")
+                    self.view.makeToast("Request error with code: \(String(describing: err))", duration: 3, position: .bottom)
+                }
+            })
+            
+        }
     }
     
     
@@ -107,7 +114,6 @@ class EditProfileViewController: UIViewController {
             self.view.frame = CGRect(x:self.view.frame.origin.x, y:self.view.frame.origin.y + 200, width:self.view.frame.size.width, height:self.view.frame.size.height);
         })
     }
-    
     
 }
 
